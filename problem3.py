@@ -1,100 +1,85 @@
-"""
-Problem 3: Number Analysis
-Analyze a list of numbers provided by the user.
-"""
-
 def get_numbers_from_user():
     """
     Get numbers from user until they type 'done'.
     Return a list of numbers.
-
-    Returns:
-        list: List of numbers entered by user
     """
     numbers = []
-
     while True:
-        # TODO: Get input from user
-        # TODO: Check if user typed 'done'
-        # TODO: Try to convert to float and add to list
-        # TODO: Handle invalid input gracefully
-        pass
-
+        raw = input("Enter a number (or 'done' to finish): ").strip()
+        if raw.lower() == "done":
+            break
+        try:
+            num = float(raw)
+            numbers.append(num)
+        except ValueError:
+            print("Invalid input. Please enter a number or 'done'.")
     return numbers
 
 
 def analyze_numbers(numbers):
     """
     Analyze the list and return a dictionary with:
-    - count: number of elements
-    - sum: sum of all numbers
-    - average: average value
-    - minimum: smallest number
-    - maximum: largest number
-    - even_count: count of even numbers
-    - odd_count: count of odd numbers
-
-    Args:
-        numbers (list): List of numbers to analyze
-
-    Returns:
-        dict: Dictionary with analysis results, or None if list is empty
+      - count: number of elements
+      - sum: sum of all numbers
+      - average: average value
+      - minimum: smallest number
+      - maximum: largest number
+      - even_count: count of even numbers (integers only)
+      - odd_count: count of odd numbers (integers only)
     """
     if not numbers:
         return None
 
-    analysis = {}
+    count = len(numbers)
+    total = sum(numbers)
+    avg = total / count
+    minimum = min(numbers)
+    maximum = max(numbers)
 
-    # TODO: Calculate count
-    # TODO: Calculate sum
-    # TODO: Calculate average
-    # TODO: Find minimum
-    # TODO: Find maximum
-    # TODO: Count even numbers (hint: use modulo operator)
-    # TODO: Count odd numbers
+    # Compter pairs/impairs uniquement pour les valeurs entières
+    even_count = sum(1 for x in numbers if float(x).is_integer() and int(x) % 2 == 0)
+    odd_count = sum(1 for x in numbers if float(x).is_integer() and int(x) % 2 != 0)
 
-    return analysis
+    return {
+        "count": count,
+        "sum": total,
+        "average": round(avg, 2),
+        "minimum": minimum,
+        "maximum": maximum,
+        "even_count": even_count,
+        "odd_count": odd_count,
+    }
 
 
 def display_analysis(analysis):
     """
     Display the analysis in a formatted way.
-
-    Args:
-        analysis (dict): Dictionary containing analysis results
     """
     if not analysis:
         return
 
-    print("\nAnalysis Results:")
-    print("-" * 20)
-
-    # TODO: Display all analysis results in a nice format
-    # Example:
-    # Count: 5
-    # Sum: 25
-    # Average: 5.00
-    # etc.
-    pass
+    print("\nAnalysis Results")
+    print("-" * 28)
+    print(f"Count: {analysis['count']}")
+    print(f"Sum: {analysis['sum']:.2f}")
+    print(f"Average: {analysis['average']:.2f}")
+    print(f"Minimum: {analysis['minimum']}")
+    print(f"Maximum: {analysis['maximum']}")
+    print(f"Even count: {analysis['even_count']}")
+    print(f"Odd count: {analysis['odd_count']}")
 
 
 def main():
     """Main function to run the number analyzer."""
     print("Number Analyzer")
-    print("Enter numbers one at a time. Type 'done' when finished.")
-    print()
+    print("Enter numbers one at a time. Type 'done' when finished.\n")
 
-    # Get numbers from user
     numbers = get_numbers_from_user()
-
     if not numbers:
-        print("No numbers entered!")
+        print("No numbers entered.")
         return
 
-    # Analyze the numbers
     analysis = analyze_numbers(numbers)
-
-    # Display the results
     display_analysis(analysis)
 
 
