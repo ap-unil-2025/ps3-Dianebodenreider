@@ -2,7 +2,7 @@
 
 ## Student Information
 Name: Diane Bodenreider
-Date: 07.11.2025
+Date: 10.10.2025
 
 ## Assignment Overview
 This assignment covers Git version control basics and Python fundamentals including variables, control flow, functions, and file I/O.
