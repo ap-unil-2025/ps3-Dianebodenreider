@@ -53,5 +53,5 @@ if __name__ == "__main__":
     assert fahrenheit_to_celsius(212) == 100
     print("All tests passed!")
 
-    
     temperature_converter()
+
