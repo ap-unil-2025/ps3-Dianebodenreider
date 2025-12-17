@@ -8,14 +8,15 @@ def get_numbers_from_user():
 
 def analyze_numbers(numbers):
     """
-    Analyze the list and return a dictionary with statistics.
+    Analyze the list and return a dictionary with:
+    count, sum, average, minimum, maximum, even_count, odd_count
     """
     if not numbers:
         return None
 
     count = len(numbers)
     total = sum(numbers)
-    avg = total / count
+    average = total / count
     minimum = min(numbers)
     maximum = max(numbers)
 
@@ -29,11 +30,13 @@ def analyze_numbers(numbers):
     return {
         "count": count,
         "sum": total,
-        "average": round(avg, 2),
+        "average": round(average, 2),
         "minimum": minimum,
         "maximum": maximum,
         "even_count": even_count,
         "odd_count": odd_count,
+    }
+
 
 
 def display_analysis(analysis):
